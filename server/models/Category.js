@@ -6,6 +6,9 @@ const schema = new Schema(
       type: String,
       require: true,
     },
+    category_id: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -223,7 +223,14 @@
     "title": "Blackview Tab 10",
     "price": "16 500 рублей",
     "image": "https://gsm-store.ru/upload/medialibrary/93b/ry8dsqlfnh88cfs1uw7we6452mpjhjzn.jpg",
-    "parametr": "25"
+    "parametr": {
+      "product_id": "25",
+      "size": "10.1 дюйма",
+      "CPU": "MediaTek MT8768",
+      "memory": "4/64 ГБ",
+      "ОС": "Android 11",
+      "battery": "7 480 мАч, 7.5 ч"
+    }
   },
   {
     "id": "26",
@@ -233,7 +240,14 @@
     "title": "DIGMA Optima 10 A502",
     "price": "9 990 рублей",
     "image": "https://gsm-store.ru/upload/medialibrary/fbd/h17c8nm39g30qyga2m8gw5onrlha995z.jpg",
-    "parametr": "26"
+    "parametr": {
+      "product_id": "26",
+      "size": "10.1 дюйма",
+      "CPU": "Spreadtrum SC7731E",
+      "memory": "1/16 ГБ",
+      "ОС": "Android 11 (Go Edition)",
+      "battery": "4000 мАч, 6 ч"
+    }
   },
   {
     "id": "27",
@@ -243,7 +257,14 @@
     "title": "HUAWEI MatePad T8 Kids Edition",
     "price": "14 990 рублей",
     "image": "https://gsm-store.ru/upload/medialibrary/954/bb1mynq3rushdtx5y8pz1ysbsmbajady.jpg",
-    "parametr": "27"
+    "parametr": {
+      "product_id": "27",
+      "size": "8 дюймов",
+      "CPU": "MediaTek MY8768",
+      "memory": "2/16, 3/32 ГБ",
+      "ОС": "Android 10",
+      "battery": "5100 мАч, 8 ч"
+    }
   },
   {
     "id": "28",
@@ -253,7 +274,14 @@
     "title": "Lenovo Tab M10 HD TB-X306X",
     "price": "19 200 рублей",
     "image": "https://gsm-store.ru/upload/medialibrary/5e1/6kxj3sv65if7mgnyy3fo9f2702gbgrpd.jpg",
-    "parametr": "28"
+    "parametr": {
+      "product_id": "28",
+      "size": "8 дюймов",
+      "CPU": "MediaTek Helio P22T",
+      "memory": "2/32, 4/64 ГБ",
+      "ОС": "Android 10",
+      "battery": "5000 мАч, 10 ч"
+    }
   },
   {
     "id": "29",
@@ -263,7 +291,14 @@
     "title": "HUAWEI MatePad T 10",
     "price": "10 990 рублей",
     "image": "https://gsm-store.ru/upload/medialibrary/097/o0vmmigdhbwo20x51eg447s878mo9436.jpg",
-    "parametr": "29"
+    "parametr": {
+      "product_id": "29",
+      "size": "9.7 дюймa",
+      "CPU": "Kirin 710A",
+      "memory": "2/32, 4/64 ГБ",
+      "ОС": "Android 10",
+      "battery": "5100 мАч, 11 ч"
+    }
   },
   {
     "id": "30",
@@ -273,6 +308,13 @@
     "title": "Teclast P20HD (4.5)",
     "price": "12 700 рублей",
     "image": "https://gsm-store.ru/upload/medialibrary/a1c/d2hzicu2oy6qbuda2c37ukdseo720v4v.jpg",
-    "parametr": "30"
+    "parametr": {
+      "product_id": "30",
+      "size": "8.7 дюйма",
+      "CPU": "MediaTek Helio P22T",
+      "memory": "3/32, 4/64 ГБ",
+      "ОС": "Android 11",
+      "battery": "5100 мАч, 7 ч"
+    }
   }
 ]

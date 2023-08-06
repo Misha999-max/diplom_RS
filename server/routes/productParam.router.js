@@ -4,7 +4,6 @@ const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res) => {
   try {
-    console.log(res);
     const productParams = await ProductParam.find();
     res.status(200).json({ list: productParams });
   } catch (error) {

@@ -1,74 +1,111 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 import CarouselItem from "./common/carusell";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Grid } from "@mui/material";
-import TablePaginationDemo from "./common/pagination";
 import { Container } from "react-bootstrap";
 import CartItem from "./cartItem";
 import AsaidBar from "./page/asaidBar";
+import { paginate } from "../utils/paginate";
+import Pagination from "./common/newPagination";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  getProducts,
+  getProductsStatus,
+  loadProductsList,
+} from "../store/product";
+import { useDispatch, useSelector } from "react-redux";
+import localStorageService from "../services/localStorage.service";
 
 const MainPage = () => {
-  const URL_PRODUCT = "http://localhost:3001/products";
-  const [product, setProduct] = useState([]);
-  //const [pageNumber, setPageNumber] = useState(1);
-  const [showArray, setShowArray] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector(getProducts());
+  const isLoading = useSelector(getProductsStatus());
+  const [pageNumber, setPageNumber] = useState(1);
+  const [showProduct, setShowProduct] = useState([]);
+  const [bascketArr, setBascketArr] = useState([]);
+  const userId = localStorageService.getUserId();
   useEffect(() => {
-    axios.get(URL_PRODUCT).then((data) => setProduct(data.data));
-    axios
-      .get(`${URL_PRODUCT}?_page=1&_limit=3`)
-      .then((res) => setShowArray(res.data));
+    dispatch(loadProductsList());
   }, []);
-  const handleChange = (value) => {
-    axios
-      .get(`${URL_PRODUCT}?name=${value}`)
-      .then((responce) => console.log(responce.data));
-  };
-  const handleSortCategory = (name) => {
-    console.log(name);
-  };
-  const handleClick = (id) => {
-    axios
-      .get(`${URL_PRODUCT}/${id}`)
-      .then((responce) => console.log(responce.data));
-  };
-  const handleSliceTasks = (item) => {
-    axios
-      .get(`${URL_PRODUCT}?_page=${Number(item)}&_limit=3`)
-      .then((res) => setShowArray(res.data));
+  const history = useHistory();
+
+  const handlePageChange = (pageIndex) => {
+    setPageNumber(pageIndex);
   };
 
+  const handleSortCategory = (id) => {
+    const productArr = [];
+    products.forEach((item) => {
+      if (item.category_id === id) {
+        productArr.push(item);
+      }
+    });
+    setShowProduct(productArr);
+  };
+  const handleClear = () => {
+    setShowProduct(products);
+  };
+  const handleClick = (id) => {
+    history.push(`/cartItem/${id}`);
+  };
+  console.log(products);
+
+  const handleAdd = (data) => {
+    // console.log(id);
+    if (localStorage.getItem(userId)) {
+      const newBAsketArr = localStorage.getItem(userId);
+      setBascketArr((prevState) => [...prevState, data]);
+      localStorage.setItem(userId, bascketArr);
+    } else {
+      localStorage.setItem(userId, data);
+    }
+  };
+
+  const count = showProduct && showProduct.length;
+  const pageSize = 3;
+  const productCrop =
+    showProduct && paginate(showProduct, pageNumber, pageSize);
+
   return (
-    <>
+    <div className="main__container">
       <Container>
         <Grid container spacing={4} sx={{ padding: 2 }}>
           <Grid item>
             <AsaidBar
-              product={product}
               handleSortCategory={handleSortCategory}
+              handleClear={handleClear}
             />
           </Grid>
-          {showArray.map((item) => (
-            <Grid item key={item.id}>
-              <CartItem
-                title={item.title}
-                price={item.price}
-                img={item.image}
-                id={item.id}
-                handleClick={handleClick}
-              />
-            </Grid>
-          ))}
-        </Grid>
 
-        <TablePaginationDemo
-          tasks={product}
-          handleSliceTasks={handleSliceTasks}
+          {!isLoading ? (
+            productCrop.map((item) => (
+              <Grid item key={item._id}>
+                <CartItem
+                  title={item.title}
+                  price={item.price}
+                  img={item.image}
+                  id={item._id}
+                  handleClick={handleClick}
+                  handleAdd={() => handleAdd(item._id)}
+                />
+              </Grid>
+            ))
+          ) : (
+            <h1>Loading....</h1>
+          )}
+        </Grid>
+        <Pagination
+          itemsCount={count}
+          pageSize={pageSize}
+          currentPage={pageNumber}
+          onPageChange={handlePageChange}
         />
         <CarouselItem />
       </Container>
-    </>
+    </div>
   );
 };
 

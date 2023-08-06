@@ -42,12 +42,13 @@ router.post("/signUp", [
       const newUser = await User.create({
         ...req.body,
         ...generateUserData(),
+        isAdmin: false,
         password: hashedPassword,
       });
 
       const tokens = tokenService.generate({ _id: newUser._id });
       await tokenService.save(newUser._id, tokens.refreshToken);
-      res.status(200).send({ ...tokens, userId: newUser._id });
+      res.status(201).send({ ...tokens, userId: newUser._id, newUser });
     } catch (error) {
       res.status(500).json({
         message: "на сервере произошла ошибка попробуйте позже",
@@ -57,7 +58,7 @@ router.post("/signUp", [
 ]);
 
 router.post("/signInWithPassword", [
-  check("email", "email некорректный").normalizeEmail().isEmail(),
+  check("email", "email некорректный").isEmail(),
   check("password", "пароль не может быть пустым").exists(),
   async (req, res) => {
     try {
@@ -73,7 +74,7 @@ router.post("/signInWithPassword", [
 
       const { email, password } = req.body;
 
-      const exitingUser = await User.findOne("email");
+      const exitingUser = await User.findOne({ email });
       if (!exitingUser) {
         return res.status(400).send({
           message: {
@@ -99,7 +100,7 @@ router.post("/signInWithPassword", [
 
       const tokens = tokenService.generate({ _id: exitingUser._id });
       await tokenService.save(exitingUser._id, tokens.refreshToken);
-      res.status(200).send({ ...tokens, userId: exitingUser._id });
+      res.status(200).send({ ...tokens, userId: exitingUser._id, exitingUser });
     } catch (error) {
       res.status(500).json({
         message: "на сервере произошла ошибка попробуйте позже",

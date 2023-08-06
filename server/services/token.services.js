@@ -7,6 +7,7 @@ class TokenService {
     const accessToken = jwt.sign(payload, config.get("accessSecret"), {
       expiresIn: "1h",
     });
+
     const refreshToken = jwt.sign(payload, config.get("refreshSecret"));
 
     return {
@@ -15,14 +16,14 @@ class TokenService {
       expiresIn: 3600,
     };
   }
-  async save(userId, refreshToken) {
-    const data = await Token.findOne({ user: userId });
+  async save(user, refreshToken) {
+    const data = await Token.findOne({ user });
     if (data) {
       data.refreshToken = refreshToken;
       return data.save();
     }
 
-    const token = await Token.create({ user: userId, refreshToken });
+    const token = await Token.create({ user, refreshToken });
     return token;
   }
   validateRefresh(refreshToken) {
@@ -32,6 +33,20 @@ class TokenService {
       return null;
     }
   }
+  validateAccess(accessToken) {
+    try {
+      return jwt.verify(accessToken, config.get("accessSecret"));
+    } catch (error) {
+      return null;
+    }
+  }
+  async findToken(refreshToken) {
+    try {
+      await Token.findOne({ refreshToken });
+    } catch (error) {
+      return null;
+    }
+  }
 }
 
-module.export = new TokenService();
+module.exports = new TokenService();

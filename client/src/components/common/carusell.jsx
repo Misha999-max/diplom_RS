@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 const CarouselItem = () => {
-  const URL_PRODUCT = "http://localhost:3001/couresel";
+  const URL_PRODUCT = "http://localhost:8080/api/couresel";
   const [index, setIndex] = useState(0);
 
   const [foto, setFoto] = useState([]);
@@ -12,8 +14,8 @@ const CarouselItem = () => {
     setIndex(selectedIndex);
   };
   useEffect(() => {
-    axios.get(URL_PRODUCT).then((responce) => {
-      setFoto(responce.data);
+    axios.get(URL_PRODUCT).then((data) => {
+      setFoto(data.data.list);
     });
   }, []);
 
@@ -25,14 +27,19 @@ const CarouselItem = () => {
         onSelect={handleSelect}
         fade
       >
-        {foto.map((fotos, index) => (
-          <Carousel.Item>
-            <img className="d-block w-100" src={fotos} alt="First slide" />
-            <Carousel.Caption>
-              <h3>{index + 1}slide label</h3>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
+        {foto &&
+          foto.map((fotos, index) => (
+            <Carousel.Item key={fotos._id}>
+              <img
+                className="d-block w-100"
+                src={fotos.couresel}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>{index + 1}slide label</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
       </Carousel>
     </div>
   );

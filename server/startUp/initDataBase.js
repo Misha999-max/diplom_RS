@@ -5,7 +5,7 @@ const Product = require("../models/Product");
 const ProductParam = require("../models/ProductParam");
 const categoryMock = require("../mock/category.json");
 const productMock = require("../mock/productc.json");
-const userMock = require("../mock/users.json");
+// const userMock = require("../mock/users.json");
 const productParamMock = require("../mock/productParam.json");
 const coureselMock = require("../mock/couresel.json");
 
@@ -19,10 +19,10 @@ module.exports = async () => {
   if (couresel.length !== coureselMock.length) {
     await createInitialEntity(Couresel, coureselMock);
   }
-  const user = await Couresel.find();
-  if (user.length !== userMock.length) {
-    await createInitialEntity(User, userMock);
-  }
+  // const user = await Couresel.find();
+  // if (user.length !== userMock.length) {
+  //   await createInitialEntity(User, userMock);
+  // }
   const product = await Product.find();
   if (product.length !== productMock.length) {
     await createInitialEntity(Product, productMock);
