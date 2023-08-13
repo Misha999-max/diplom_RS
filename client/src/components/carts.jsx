@@ -7,6 +7,11 @@ import {
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { getProducts, loadProductsList } from "../store/product";
+import clock from "../images/clock.jpeg";
+import phone from "../images/casePhone.png";
+import microWave from "../images/microWave.webp";
+import tvSet from "../images/tvSet.jpg";
+import tablet from "../images/tablet.png";
 
 const Card = () => {
   const URL_CATEGORY = "http://localhost:8080/api/category";
@@ -14,7 +19,7 @@ const Card = () => {
   const history = useHistory();
   const [categoryes, setCategory] = useState();
   const products = useSelector(getProducts());
-
+  console.log(categoryes);
   useEffect(() => {
     dispatch(loadProductsList());
   }, []);
@@ -42,11 +47,40 @@ const Card = () => {
     categoryes &&
     categoryes.filter((categ) => categ.category_id === product[0].category_id);
 
-  // console.log(category);
-  console.log(product);
+  function changeBackGround(cat) {
+    if (cat === "телефон") {
+      return phone;
+    }
+    if (cat === "Микроволновые печи") {
+      return microWave;
+    }
+    if (cat === "Планшеты") {
+      return tablet;
+    }
+    if (cat === "Телевизоры") {
+      return tvSet;
+    }
+    if (cat === "Часы") {
+      return clock;
+    }
+  }
+
+  // console.log(changeBackGround(category[0].name));
+  // console.log(product);
 
   return (
-    <div className="carts__container">
+    <div
+      className="carts__container"
+      style={{
+        backgroundImage: `url(${
+          category && changeBackGround(category[0].name)
+        })`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: `rgba(red, rgb(196, 214, 196), blue, 0.8)`,
+      }}
+    >
       <button className="carts__item_btnBack" onClick={handleBack}>
         Back
       </button>

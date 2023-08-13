@@ -18,6 +18,9 @@ import {
 } from "../store/product";
 import { useDispatch, useSelector } from "react-redux";
 import localStorageService from "../services/localStorage.service";
+import Footer from "./footer";
+import InfoZone from "./common/infoZone";
+import HeaderBanner from "./common/headerBanner";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -25,7 +28,7 @@ const MainPage = () => {
   const isLoading = useSelector(getProductsStatus());
   const [pageNumber, setPageNumber] = useState(1);
   const [showProduct, setShowProduct] = useState([]);
-  const [bascketArr, setBascketArr] = useState([]);
+  // const [bascketArr, setBascketArr] = useState([]);
   const userId = localStorageService.getUserId();
   useEffect(() => {
     dispatch(loadProductsList());
@@ -51,14 +54,14 @@ const MainPage = () => {
   const handleClick = (id) => {
     history.push(`/cartItem/${id}`);
   };
-  console.log(products);
 
   const handleAdd = (data) => {
     // console.log(id);
     if (localStorage.getItem(userId)) {
-      const newBAsketArr = localStorage.getItem(userId);
-      setBascketArr((prevState) => [...prevState, data]);
-      localStorage.setItem(userId, bascketArr);
+      const newBAsketArr = localStorage.getItem(userId).split(",");
+      newBAsketArr.push(data);
+      // setBascketArr((prevState) => [...prevState, data]);
+      localStorage.setItem(userId, newBAsketArr);
     } else {
       localStorage.setItem(userId, data);
     }
@@ -70,42 +73,46 @@ const MainPage = () => {
     showProduct && paginate(showProduct, pageNumber, pageSize);
 
   return (
-    <div className="main__container">
-      <Container>
-        <Grid container spacing={4} sx={{ padding: 2 }}>
-          <Grid item>
-            <AsaidBar
-              handleSortCategory={handleSortCategory}
-              handleClear={handleClear}
-            />
-          </Grid>
+    <>
+      <HeaderBanner />
+      <div className="main__container">
+        <Container>
+          <Grid container spacing={4} sx={{ padding: 2 }}>
+            <Grid item>
+              <AsaidBar
+                handleSortCategory={handleSortCategory}
+                handleClear={handleClear}
+              />
+            </Grid>
 
-          {!isLoading ? (
-            productCrop.map((item) => (
-              <Grid item key={item._id}>
-                <CartItem
-                  title={item.title}
-                  price={item.price}
-                  img={item.image}
-                  id={item._id}
-                  handleClick={handleClick}
-                  handleAdd={() => handleAdd(item._id)}
-                />
-              </Grid>
-            ))
-          ) : (
-            <h1>Loading....</h1>
-          )}
-        </Grid>
-        <Pagination
-          itemsCount={count}
-          pageSize={pageSize}
-          currentPage={pageNumber}
-          onPageChange={handlePageChange}
-        />
-        <CarouselItem />
-      </Container>
-    </div>
+            {!isLoading ? (
+              productCrop.map((item) => (
+                <div className="product__card" item key={item._id}>
+                  <CartItem
+                    title={item.title}
+                    price={item.price}
+                    img={item.image}
+                    id={item._id}
+                    handleClick={handleClick}
+                    handleAdd={() => handleAdd(item._id)}
+                  />
+                </div>
+              ))
+            ) : (
+              <h1>Loading....</h1>
+            )}
+          </Grid>
+          <Pagination
+            itemsCount={count}
+            pageSize={pageSize}
+            currentPage={pageNumber}
+            onPageChange={handlePageChange}
+          />
+          <CarouselItem />
+        </Container>
+        <InfoZone />
+      </div>
+    </>
   );
 };
 

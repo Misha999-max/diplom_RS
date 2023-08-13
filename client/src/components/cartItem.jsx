@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import localStorageService from "../services/localStorage.service";
 
@@ -15,18 +14,14 @@ const CartItem = ({ img, title, price, id, handleClick, handleAdd }) => {
       <Card.Body>
         <Card.Title className="item__card_title">{title}</Card.Title>
         <Card.Text>Цена: {price}</Card.Text>
-        <Button variant="primary" onClick={() => handleClick(id)}>
+        <button className="carts__item-add" onClick={() => handleClick(id)}>
           Go somewhere
-        </Button>
+        </button>
 
         {accessToken && (
-          <Button
-            variant="primary"
-            className="carts__item-add"
-            onClick={() => handleAdd(id)}
-          >
+          <button className="carts__item-add" onClick={() => handleAdd(id)}>
             Add to basket
-          </Button>
+          </button>
         )}
       </Card.Body>
     </Card>

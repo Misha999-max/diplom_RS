@@ -17,6 +17,7 @@ import { loadUsersList } from "./store/users";
 import ProtectedRoute from "./components/common/protectedRoute";
 import BasketUserPage from "./components/page/basketUserPage";
 import LogOut from "./components/ui/logOut";
+import Footer from "./components/footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/" exact component={MainPage} />
         <Route component={NotFaundPage} />
       </Switch>
+      <Footer />
     </>
   );
 }
