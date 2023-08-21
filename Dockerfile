@@ -16,6 +16,8 @@ WORKDIR /app
 
 COPY server/package.json /app
 
+RUN npm install -g cross-env
+
 RUN npm install
 
 COPY server /app
