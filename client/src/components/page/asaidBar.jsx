@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // import config from "../../config.json";
 
 const AsaidBar = ({ handleSortCategory, handleClear }) => {
-  const URL_CATEGORY = "http://localhost:8080/api/category";
+  const URL_CATEGORY = "http://188.124.50.192/api/category";
 
   const [category, setCategory] = useState();
 

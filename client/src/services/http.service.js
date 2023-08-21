@@ -8,7 +8,7 @@ import authServise from "./auth.serves";
 import localStorageService from "./localStorage.service";
 
 const http = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "http://188.124.50.192/api/",
 });
 
 http.interceptors.request.use(

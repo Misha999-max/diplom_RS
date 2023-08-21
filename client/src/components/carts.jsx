@@ -14,7 +14,7 @@ import tvSet from "../images/tvSet.jpg";
 import tablet from "../images/tablet.png";
 
 const Card = () => {
-  const URL_CATEGORY = "http://localhost:8080/api/category";
+  const URL_CATEGORY = "http://188.124.50.192/api/category";
   const dispatch = useDispatch();
   const history = useHistory();
   const [categoryes, setCategory] = useState();

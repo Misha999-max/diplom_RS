@@ -12,6 +12,9 @@ node_modules
 # production
 /build
 
+
+# qGdMNUDKX5L6     key password
+
 # misc
 .DS_Store
 .env.local

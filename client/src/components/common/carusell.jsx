@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 const CarouselItem = () => {
-  const URL_PRODUCT = "http://localhost:8080/api/couresel";
+  const URL_PRODUCT = "http://188.124.50.192/api/couresel";
   const [index, setIndex] = useState(0);
 
   const [foto, setFoto] = useState([]);

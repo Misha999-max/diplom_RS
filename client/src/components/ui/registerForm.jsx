@@ -4,15 +4,10 @@ import React, { useEffect, useState } from "react";
 import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
 import CheckBoxField from "../common/form/checkBoxField";
-// import { signUp } from "../../store/users";
-// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-// import axios from "axios";
-// import localStorageService from "../../services/localStorage.service";
 import { signUp } from "../../store/users";
 import { useDispatch } from "react-redux";
 
 const RegisterForm = () => {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const [data, setData] = useState({
     email: "",

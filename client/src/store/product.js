@@ -40,7 +40,7 @@ export const loadProductsList = () => async (dispatch, getState) => {
   if (isDate(lastFetch)) {
     dispatch(productsRequeted);
     try {
-      const { data } = await axios.get("http://localhost:8080/api/product");
+      const { data } = await axios.get("http://188.124.50.192/api/product");
       dispatch(productsReceved(data.list));
     } catch (error) {
       dispatch(productsRequestFild(error.message));
