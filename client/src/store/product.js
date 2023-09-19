@@ -35,8 +35,13 @@ export const loadProductsList = () => async (dispatch, getState) => {
   if (isDate(lastFetch)) {
     dispatch(productsRequeted);
     try {
+<<<<<<< HEAD
       const { list } = await productService.fetchAll();
       dispatch(productsReceved(list));
+=======
+      const { data } = await axios.get("http://188.124.50.192/api/product");
+      dispatch(productsReceved(data.list));
+>>>>>>> ee6f597db1705a8a1e5c9c49fad22db8fe54bad8
     } catch (error) {
       dispatch(productsRequestFild(error.message));
     }

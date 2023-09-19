@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
   "apiEndpoint": "http://localhost:8080/api/",
+=======
+  "apiEndpoint": "https://188.124.50.192/api/",
+>>>>>>> ee6f597db1705a8a1e5c9c49fad22db8fe54bad8
   "isFireBase": false
 }

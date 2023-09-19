@@ -15,6 +15,10 @@ import tablet from "../images/tablet.png";
 import { getCategories } from "../store/category";
 
 const Card = () => {
+<<<<<<< HEAD
+=======
+  const URL_CATEGORY = "http://188.124.50.192/api/category";
+>>>>>>> ee6f597db1705a8a1e5c9c49fad22db8fe54bad8
   const dispatch = useDispatch();
   const history = useHistory();
 

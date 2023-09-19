@@ -6,6 +6,10 @@ import Carousel from "react-bootstrap/Carousel";
 import couruselService from "../../services/courusel.services";
 
 const CarouselItem = () => {
+<<<<<<< HEAD
+=======
+  const URL_PRODUCT = "http://188.124.50.192/api/couresel";
+>>>>>>> ee6f597db1705a8a1e5c9c49fad22db8fe54bad8
   const [index, setIndex] = useState(0);
 
   const [foto, setFoto] = useState([]);
