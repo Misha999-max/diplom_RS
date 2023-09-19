@@ -252,3 +252,33 @@ img {
   color: #ed7373;
   margin-bottom: 20px;
 }
+
+.repaer__zone {
+  display: flex;
+}
+.repair__zone-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.leftRepairZone {
+  flex-grow: 2;
+}
+.leftRepairZone__list-block {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  padding: 10px 5px;
+}
+.leftRepairZone__list-block img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+.leftRepairZone__list-block span {
+  display: block;
+  margin-left: 130px;
+}

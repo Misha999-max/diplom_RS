@@ -1,30 +1,17 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-// import config from "../../config.json";
+
+import React from "react";
+import { useSelector } from "react-redux";
+import { getCategories, getCategoryStatus } from "../../store/category";
 
 const AsaidBar = ({ handleSortCategory, handleClear }) => {
-  const URL_CATEGORY = "http://localhost:8080/api/category";
-
-  const [category, setCategory] = useState();
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await axios.get(URL_CATEGORY);
-        setCategory(data.list);
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    }
-
-    fetchData();
-  }, []);
+  const category = useSelector(getCategories());
+  const isLoading = useSelector(getCategoryStatus());
 
   return (
     <div>
       <ul>
-        {category &&
+        {!isLoading &&
           category.map((item) => (
             <li className="list__category" key={item.category_id}>
               <button

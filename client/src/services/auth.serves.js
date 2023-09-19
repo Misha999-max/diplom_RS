@@ -1,8 +1,9 @@
 import axios from "axios";
 import localStorageService from "./localStorage.service";
+import config from "../config.json";
 
 const httpAuth = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: config.apiEndpoint,
 });
 
 const authServises = {
@@ -19,12 +20,6 @@ const authServises = {
       email,
       password,
       returnSecureToken: true,
-    });
-    return data;
-  },
-  get: async (accessToken) => {
-    const { data } = await httpAuth.get("/user", {
-      headers: { Authorization: `Bearer ${accessToken}` },
     });
     return data;
   },

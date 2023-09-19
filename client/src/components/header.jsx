@@ -5,15 +5,13 @@ import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import localStorageService from "../services/localStorage.service";
 import { useSelector } from "react-redux";
-import { getCurrentUser } from "../store/users";
+import { getCurrentUser, getIsLoggedIn } from "../store/users";
 
 const HeaderComponent = ({ url }) => {
   const user = useSelector(getCurrentUser());
-  console.log(user);
 
-  const accessToken = localStorageService.getAccessToken();
+  const isLoggedIn = useSelector(getIsLoggedIn());
 
   return (
     <>
@@ -47,7 +45,7 @@ const HeaderComponent = ({ url }) => {
                   Address
                 </Link>
               </Nav.Link>
-              {accessToken && (
+              {isLoggedIn && (
                 <Nav.Link as="span">
                   <Link className="linkItem" to="/basketUser">
                     твоя корзина
@@ -59,15 +57,15 @@ const HeaderComponent = ({ url }) => {
           <Navbar.Collapse className="justify-content-end">
             <Nav>
               <Nav.Link as="span">
-                {accessToken ? (
-                  <span> Привет {user ? user.login : "неизвестный"} </span>
+                {isLoggedIn ? (
+                  <span> Привет {user ? user.email : "неизвестный"} </span>
                 ) : (
                   <Link to="/login">
                     <Button variant="primary">Log In</Button>
                   </Link>
                 )}
 
-                {accessToken && (
+                {isLoggedIn && (
                   <Link to="/logout">
                     <Button variant="primary" className="logOut">
                       log out

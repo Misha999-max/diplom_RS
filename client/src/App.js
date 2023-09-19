@@ -11,22 +11,15 @@ import HeaderComponent from "./components/header";
 import Login from "./layouts/login";
 import AppLoader from "./components/ui/hoc/appLoader";
 import Card from "./components/carts";
-import { useDispatch } from "react-redux";
-import { loadProductsList } from "./store/product";
-import { loadUsersList } from "./store/users";
+
 import ProtectedRoute from "./components/common/protectedRoute";
 import BasketUserPage from "./components/page/basketUserPage";
 import LogOut from "./components/ui/logOut";
 import Footer from "./components/footer";
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadProductsList());
-    dispatch(loadUsersList());
-  }, []);
   return (
-    <>
+    <AppLoader>
       <HeaderComponent />
       <Switch>
         <ProtectedRoute path="/main/:userId?" component={MainPage} />
@@ -40,7 +33,7 @@ function App() {
         <Route component={NotFaundPage} />
       </Switch>
       <Footer />
-    </>
+    </AppLoader>
   );
 }
 

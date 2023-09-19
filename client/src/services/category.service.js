@@ -3,8 +3,8 @@ const categoryEndpoint = "category/";
 
 const categoryService = {
   get: async () => {
-    const { data } = await httpService.get(categoryEndpoint);
-    return data;
+    const { content } = await httpService.get(categoryEndpoint);
+    return content;
   },
 };
 export default categoryService;

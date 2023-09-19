@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import httpService from "../services/http.service";
+import { isDate } from "../utils/date";
+import productService from "../services/product.service";
 
 const productSlice = createSlice({
   name: "products",
@@ -28,20 +30,13 @@ const productSlice = createSlice({
 const { reducer: productReducer, actions } = productSlice;
 const { productsRequeted, productsReceved, productsRequestFild } = actions;
 
-function isDate(date) {
-  if (Date.now() - date > 10 * 60 * 1000) {
-    return true;
-  }
-  return false;
-}
-
 export const loadProductsList = () => async (dispatch, getState) => {
   const { lastFetch } = getState().product;
   if (isDate(lastFetch)) {
     dispatch(productsRequeted);
     try {
-      const { data } = await axios.get("http://localhost:8080/api/product");
-      dispatch(productsReceved(data.list));
+      const { list } = await productService.fetchAll();
+      dispatch(productsReceved(list));
     } catch (error) {
       dispatch(productsRequestFild(error.message));
     }

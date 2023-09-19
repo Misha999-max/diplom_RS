@@ -3,9 +3,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import couruselService from "../../services/courusel.services";
 
 const CarouselItem = () => {
-  const URL_PRODUCT = "http://localhost:8080/api/couresel";
   const [index, setIndex] = useState(0);
 
   const [foto, setFoto] = useState([]);
@@ -14,8 +14,8 @@ const CarouselItem = () => {
     setIndex(selectedIndex);
   };
   useEffect(() => {
-    axios.get(URL_PRODUCT).then((data) => {
-      setFoto(data.data.list);
+    couruselService.get().then(({ list }) => {
+      setFoto(list);
     });
   }, []);
 

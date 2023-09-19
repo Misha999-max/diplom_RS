@@ -12,32 +12,20 @@ import phone from "../images/casePhone.png";
 import microWave from "../images/microWave.webp";
 import tvSet from "../images/tvSet.jpg";
 import tablet from "../images/tablet.png";
+import { getCategories } from "../store/category";
 
 const Card = () => {
-  const URL_CATEGORY = "http://localhost:8080/api/category";
   const dispatch = useDispatch();
   const history = useHistory();
-  const [categoryes, setCategory] = useState();
+
   const products = useSelector(getProducts());
-  console.log(categoryes);
+  const categoryes = useSelector(getCategories());
+
   useEffect(() => {
     dispatch(loadProductsList());
   }, []);
   const { itemId } = useParams();
   const product = products && products.filter((prod) => prod._id === itemId);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await axios.get(URL_CATEGORY);
-        setCategory(data.list);
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    }
-
-    fetchData();
-  }, []);
 
   const handleBack = () => {
     history.push("/");
