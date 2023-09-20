@@ -3,11 +3,7 @@ import localStorageService from "./localStorage.service";
 import config from "../config.json";
 
 const httpAuth = axios.create({
-<<<<<<< HEAD
   baseURL: config.apiEndpoint,
-=======
-  baseURL: "http://188.124.50.192/api/",
->>>>>>> ee6f597db1705a8a1e5c9c49fad22db8fe54bad8
 });
 
 const authServises = {

@@ -9,6 +9,7 @@ import {
   getCategories,
   getCategoryStatus,
 } from "../../store/category/selectors";
+import { removeProduct, createProduct } from "../../store/product";
 import { getProducts, getProductsStatus } from "../../store/product";
 
 const AddressPage = () => {
@@ -21,9 +22,11 @@ const AddressPage = () => {
   });
   const categores = useSelector(getCategories());
   const products = useSelector(getProducts());
+  console.log(products);
+  const dispatch = useDispatch();
   const isLoading = useSelector(getProductsStatus());
   // const isLoading = useSelector(getCategoryStatus());
-  console.log(products);
+  // console.log(products);
   // const categoryList =
   //   isLoading &&
   //   categores.map((c) => ({
@@ -42,21 +45,21 @@ const AddressPage = () => {
       [target.name]: target.value,
     }));
   };
+  const handleDelete = (id) => {
+    dispatch(removeProduct(id));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ ...data });
+    // console.log({ id: Date.now().toString(), like: false, ...data });
     // const isValid = validate();
     // if (!isValid) return;
-    // dispatch(
-    //     updateUser({
-    //         ...data,
-    //         qualities: data.qualities.map((q) => q.value)
-    //     })
-    // );
+    dispatch(
+      createProduct({ id: Date.now().toString(), like: false, ...data })
+    );
   };
   return (
     <>
-      <h1 className="repair__zone-title">ChangePage</h1>
+      <h1 className="repair__zone-title">Admin Panel</h1>
       <div className="container repaer__zone">
         <form action="" onSubmit={handleSubmit}>
           <TextField
@@ -109,8 +112,14 @@ const AddressPage = () => {
             {products.map((item) => (
               <li className="leftRepairZone__list-item">
                 <div className="leftRepairZone__list-block">
-                  <img src={item.image} />
+                  <img src={item.image && item.image} />
                   <span>{item.title}</span>
+                  <span
+                    className="rightRepairZone"
+                    onClick={() => handleDelete(item._id)}
+                  >
+                    &times;
+                  </span>
                 </div>
               </li>
             ))}

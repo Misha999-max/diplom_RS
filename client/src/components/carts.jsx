@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useHistory,
@@ -15,10 +14,6 @@ import tablet from "../images/tablet.png";
 import { getCategories } from "../store/category";
 
 const Card = () => {
-<<<<<<< HEAD
-=======
-  const URL_CATEGORY = "http://188.124.50.192/api/category";
->>>>>>> ee6f597db1705a8a1e5c9c49fad22db8fe54bad8
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -56,9 +51,6 @@ const Card = () => {
       return clock;
     }
   }
-
-  // console.log(changeBackGround(category[0].name));
-  // console.log(product);
 
   return (
     <div

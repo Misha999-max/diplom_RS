@@ -10,11 +10,7 @@ import localStorageService from "./localStorage.service";
 console.log(config);
 
 const http = axios.create({
-<<<<<<< HEAD
   baseURL: config.apiEndpoint,
-=======
-  baseURL: "http://188.124.50.192/api/",
->>>>>>> ee6f597db1705a8a1e5c9c49fad22db8fe54bad8
 });
 
 http.interceptors.request.use(

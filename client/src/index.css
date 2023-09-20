@@ -256,6 +256,7 @@ img {
 .repaer__zone {
   display: flex;
 }
+
 .repair__zone-title {
   display: flex;
   justify-content: center;
@@ -281,4 +282,15 @@ img {
 .leftRepairZone__list-block span {
   display: block;
   margin-left: 130px;
+}
+.rightRepairZone {
+  align-self: flex-end;
+  font-size: 22px;
+  color: #ec0826;
+  transition: all 0.4s ease;
+}
+.rightRepairZone:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+  text-shadow: 1px 1px 10px red;
 }
