@@ -10,6 +10,7 @@ import { getCurrentUser, getIsLoggedIn } from "../store/users";
 
 const HeaderComponent = ({ url }) => {
   const user = useSelector(getCurrentUser());
+  console.log(user);
 
   const isLoggedIn = useSelector(getIsLoggedIn());
 
@@ -40,11 +41,17 @@ const HeaderComponent = ({ url }) => {
                   Contacts
                 </Link>
               </Nav.Link>
-              <Nav.Link as="span">
-                <Link className="linkItem" to="/address">
-                  Address
-                </Link>
-              </Nav.Link>
+
+              {isLoggedIn ? (
+                <Nav.Link as="span">
+                  <Link className="linkItem" to="/address">
+                    Admin Pannel
+                  </Link>
+                </Nav.Link>
+              ) : (
+                ""
+              )}
+
               {isLoggedIn && (
                 <Nav.Link as="span">
                   <Link className="linkItem" to="/basketUser">

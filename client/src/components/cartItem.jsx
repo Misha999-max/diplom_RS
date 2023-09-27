@@ -6,7 +6,6 @@ import localStorageService from "../services/localStorage.service";
 
 const CartItem = ({ img, title, price, id, handleClick, handleAdd }) => {
   const accessToken = localStorageService.getAccessToken();
-  console.log(id);
 
   return (
     <Card className="item__card">

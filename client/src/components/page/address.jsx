@@ -11,6 +11,7 @@ import {
 } from "../../store/category/selectors";
 import { removeProduct, createProduct } from "../../store/product";
 import { getProducts, getProductsStatus } from "../../store/product";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const AddressPage = () => {
   const [data, setData] = useState({
@@ -18,13 +19,13 @@ const AddressPage = () => {
     title: "",
     image: "",
     description: "",
-    category: "",
+    category_id: "",
   });
   const categores = useSelector(getCategories());
   const products = useSelector(getProducts());
-  console.log(products);
   const dispatch = useDispatch();
   const isLoading = useSelector(getProductsStatus());
+  const history = useHistory();
   // const isLoading = useSelector(getCategoryStatus());
   // console.log(products);
   // const categoryList =
@@ -46,7 +47,12 @@ const AddressPage = () => {
     }));
   };
   const handleDelete = (id) => {
+    console.log(id);
     dispatch(removeProduct(id));
+  };
+  const handleChangeProduct = (id) => {
+    console.log(id);
+    history.push(`/changeProduct/${id}`);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -86,10 +92,10 @@ const AddressPage = () => {
           <SelectField
             label="Выбери категорию"
             defaultOption="Choose..."
-            name="category"
+            name="category_id"
             options={categores}
             onChange={handleChange}
-            value={data.category}
+            value={data.category_id}
             // error={errors.profession}
           />
           <TextAreaField
@@ -110,10 +116,16 @@ const AddressPage = () => {
         <div className="leftRepairZone">
           <ul className="leftRepairZone__list">
             {products.map((item) => (
-              <li className="leftRepairZone__list-item">
+              <li key={item._id} className="leftRepairZone__list-item">
                 <div className="leftRepairZone__list-block">
                   <img src={item.image && item.image} />
                   <span>{item.title}</span>
+                  <span
+                    className="changedspan"
+                    onClick={() => handleChangeProduct(item._id)}
+                  >
+                    &#128736;
+                  </span>
                   <span
                     className="rightRepairZone"
                     onClick={() => handleDelete(item._id)}

@@ -16,6 +16,7 @@ import ProtectedRoute from "./components/common/protectedRoute";
 import BasketUserPage from "./components/page/basketUserPage";
 import LogOut from "./components/ui/logOut";
 import Footer from "./components/footer";
+import ChangedProductPage from "./components/changedProductPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/cartItem/:itemId?" component={Card} />
         <Route path="/contakt" component={ContactPage} />
         <Route path="/Address/:id?" component={AddressPage} />
+        <Route path="/changeProduct/:id?" component={ChangedProductPage} />
         <Route path="/login/:id?" component={Login} />
         <Route path="/logout" component={LogOut} />
         <Route path="/" exact component={MainPage} />

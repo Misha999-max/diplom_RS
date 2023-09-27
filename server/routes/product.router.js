@@ -28,7 +28,6 @@ router.post("/", async (req, res) => {
 router.get("/:productId", async (req, res) => {
   const { productId } = req.params;
   try {
-    console.log(productId);
     const product = await Product.findById(productId);
     res.status(200).json({ list: product });
   } catch (error) {
@@ -40,7 +39,6 @@ router.get("/:productId", async (req, res) => {
 router.delete("/:productId", async (req, res) => {
   try {
     const { productId } = req.params;
-    console.log(productId);
     const removeProduct = await Product.findById(productId);
     await removeProduct.remove();
     return res.send(null);
