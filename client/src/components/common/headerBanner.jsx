@@ -7,7 +7,6 @@ const HeaderBanner = () => {
   let logoItemText = useRef(null);
 
   useEffect(() => {
-    console.log(logoItemImg);
     gsap.to(logoItemImg, 4.3, {
       opacity: 1,
       x: 260,

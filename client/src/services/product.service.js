@@ -17,5 +17,11 @@ const productService = {
     );
     return content;
   },
+  update: async (payload, productId) => {
+    const { content } = await httpService.patch(
+      productParamEndpoint + productId + payload
+    );
+    return content;
+  },
 };
 export default productService;

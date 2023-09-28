@@ -47,11 +47,9 @@ const AddressPage = () => {
     }));
   };
   const handleDelete = (id) => {
-    console.log(id);
     dispatch(removeProduct(id));
   };
   const handleChangeProduct = (id) => {
-    console.log(id);
     history.push(`/changeProduct/${id}`);
   };
   const handleSubmit = (e) => {
@@ -117,22 +115,20 @@ const AddressPage = () => {
           <ul className="leftRepairZone__list">
             {products.map((item) => (
               <li key={item._id} className="leftRepairZone__list-item">
-                <div className="leftRepairZone__list-block">
-                  <img src={item.image && item.image} />
-                  <span>{item.title}</span>
-                  <span
-                    className="changedspan"
-                    onClick={() => handleChangeProduct(item._id)}
-                  >
-                    &#128736;
-                  </span>
-                  <span
-                    className="rightRepairZone"
-                    onClick={() => handleDelete(item._id)}
-                  >
-                    &times;
-                  </span>
-                </div>
+                <img src={item.image && item.image} />
+                <span className="leftRepairZone__list-title">{item.title}</span>
+                <span
+                  className="changedspan"
+                  onClick={() => handleChangeProduct(item._id)}
+                >
+                  &#128736;
+                </span>
+                <span
+                  className="rightRepairZone"
+                  onClick={() => handleDelete(item._id)}
+                >
+                  &times;
+                </span>
               </li>
             ))}
           </ul>

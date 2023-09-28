@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
     });
   }
 });
-
 router.get("/:productId", async (req, res) => {
   const { productId } = req.params;
   try {
@@ -33,6 +32,28 @@ router.get("/:productId", async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "на сервере произошла ошибка попробуйте позже",
+    });
+  }
+});
+router.patch("/:productId", async (req, res) => {
+  try {
+    const { productId } = req.params;
+    console.log(productId);
+    if (productId === req.product._id) {
+      const updatedProduct = await Product.findByIdAndUpdate(
+        productId,
+        req.body,
+        {
+          new: true,
+        }
+      );
+      res.send(updatedProduct);
+    } else {
+      res.status(401).json({ message: "Unauthorized" });
+    }
+  } catch (e) {
+    res.status(500).json({
+      message: "На сервере произошла ошибка. Попробуйте позже",
     });
   }
 });
