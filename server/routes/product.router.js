@@ -39,7 +39,7 @@ router.patch("/:productId", async (req, res) => {
   try {
     const { productId } = req.params;
     console.log(productId);
-    if (productId === req.product._id) {
+    if (productId === req.body.id) {
       const updatedProduct = await Product.findByIdAndUpdate(
         productId,
         req.body,
@@ -47,7 +47,7 @@ router.patch("/:productId", async (req, res) => {
           new: true,
         }
       );
-      res.send(updatedProduct);
+      res.status(200).send(updatedProduct);
     } else {
       res.status(401).json({ message: "Unauthorized" });
     }
@@ -60,9 +60,10 @@ router.patch("/:productId", async (req, res) => {
 router.delete("/:productId", async (req, res) => {
   try {
     const { productId } = req.params;
-    const removeProduct = await Product.findById(productId);
-    await removeProduct.remove();
-    return res.send(null);
+    console.log(productId);
+    const removeProduct = await Product.findByIdAndRemove(productId);
+    // await removeProduct.remove();
+    res.status(200).json({ message: "product has been deleted" });
   } catch (error) {
     res.status(500).json({
       message: "на сервере произошла ошибка попробуйте позже",

@@ -36,7 +36,7 @@ function ChangedProductPage() {
       title: `${products && product[0].title}`,
       image: `${products && product[0].image}`,
       description: `${products && product[0].description}`,
-      category_id: `${categores && category[0].name}`,
+      category_id: `${categores && category[0].category_id}`,
     });
   }, []);
   const handelBack = () => {

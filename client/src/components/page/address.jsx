@@ -48,6 +48,7 @@ const AddressPage = () => {
   };
   const handleDelete = (id) => {
     dispatch(removeProduct(id));
+    history.push("/");
   };
   const handleChangeProduct = (id) => {
     history.push(`/changeProduct/${id}`);
@@ -115,7 +116,7 @@ const AddressPage = () => {
           <ul className="leftRepairZone__list">
             {products.map((item) => (
               <li key={item._id} className="leftRepairZone__list-item">
-                <img src={item.image && item.image} />
+                <img src={item.image ? item.image : ""} />
                 <span className="leftRepairZone__list-title">{item.title}</span>
                 <span
                   className="changedspan"

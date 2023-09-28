@@ -17,9 +17,10 @@ const productService = {
     );
     return content;
   },
-  update: async (payload, productId) => {
+  update: async (payload) => {
     const { content } = await httpService.patch(
-      productParamEndpoint + productId + payload
+      productParamEndpoint + payload.id,
+      payload
     );
     return content;
   },
