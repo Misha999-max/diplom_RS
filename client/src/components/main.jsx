@@ -28,11 +28,10 @@ const MainPage = () => {
   const isLoading = useSelector(getProductsStatus());
   const [pageNumber, setPageNumber] = useState(1);
   const [showProduct, setShowProduct] = useState([]);
-  // const [bascketArr, setBascketArr] = useState([]);
   const userId = localStorageService.getUserId();
   useEffect(() => {
     dispatch(loadProductsList());
-  }, []);
+  }, [products]);
   const history = useHistory();
 
   const handlePageChange = (pageIndex) => {
@@ -56,11 +55,9 @@ const MainPage = () => {
   };
 
   const handleAdd = (data) => {
-    // console.log(id);
     if (localStorage.getItem(userId)) {
       const newBAsketArr = localStorage.getItem(userId).split(",");
       newBAsketArr.push(data);
-      // setBascketArr((prevState) => [...prevState, data]);
       localStorage.setItem(userId, newBAsketArr);
     } else {
       localStorage.setItem(userId, data);
@@ -99,7 +96,11 @@ const MainPage = () => {
                 </div>
               ))
             ) : (
-              <h1>Loading....</h1>
+              <div className="loader">
+                <div data-glitch="Loading..." className="glitch">
+                  Loading...
+                </div>
+              </div>
             )}
           </Grid>
           <Pagination

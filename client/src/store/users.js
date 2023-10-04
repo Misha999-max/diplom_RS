@@ -78,7 +78,6 @@ export const login =
     dispatch(authRequested());
     try {
       const data = await authServises.login({ email, password });
-
       localStorageService.setTokens(data);
       dispatch(
         authRequestSuccess({ userId: data.userId, user: data.exitingUser })

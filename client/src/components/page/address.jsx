@@ -26,20 +26,6 @@ const AddressPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getProductsStatus());
   const history = useHistory();
-  // const isLoading = useSelector(getCategoryStatus());
-  // console.log(products);
-  // const categoryList =
-  //   isLoading &&
-  //   categores.map((c) => ({
-  //     label: c.name,
-  //     value: c.category_id,
-  //   }));
-  // const [errors, setErrors] = useState({});
-  //   const validate = () => {
-  //     const errors = validator(data, validatorConfog);
-  //     setErrors(errors);
-  //     return Object.keys(errors).length === 0;
-  // };
   const handleChange = (target) => {
     setData((prevState) => ({
       ...prevState,
@@ -48,19 +34,17 @@ const AddressPage = () => {
   };
   const handleDelete = (id) => {
     dispatch(removeProduct(id));
-    history.push("/");
+    // history.push("/");
   };
   const handleChangeProduct = (id) => {
     history.push(`/changeProduct/${id}`);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log({ id: Date.now().toString(), like: false, ...data });
-    // const isValid = validate();
-    // if (!isValid) return;
     dispatch(
       createProduct({ id: Date.now().toString(), like: false, ...data })
     );
+    history.push("/");
   };
   return (
     <>
@@ -114,24 +98,34 @@ const AddressPage = () => {
         </form>
         <div className="leftRepairZone">
           <ul className="leftRepairZone__list">
-            {products.map((item) => (
-              <li key={item._id} className="leftRepairZone__list-item">
-                <img src={item.image ? item.image : ""} />
-                <span className="leftRepairZone__list-title">{item.title}</span>
-                <span
-                  className="changedspan"
-                  onClick={() => handleChangeProduct(item._id)}
-                >
-                  &#128736;
-                </span>
-                <span
-                  className="rightRepairZone"
-                  onClick={() => handleDelete(item._id)}
-                >
-                  &times;
-                </span>
-              </li>
-            ))}
+            {products ? (
+              products.map((item) => (
+                <li key={item._id} className="leftRepairZone__list-item">
+                  <img src={item.image ? item.image : ""} />
+                  <span className="leftRepairZone__list-title">
+                    {item.title ? item.title : ""}
+                  </span>
+                  <span
+                    className="changedspan"
+                    onClick={() => handleChangeProduct(item._id)}
+                  >
+                    &#128736;
+                  </span>
+                  <span
+                    className="rightRepairZone"
+                    onClick={() => handleDelete(item._id)}
+                  >
+                    &times;
+                  </span>
+                </li>
+              ))
+            ) : (
+              <div className="loader">
+                <div data-glitch="Loading..." className="glitch">
+                  Loading...
+                </div>
+              </div>
+            )}
           </ul>
         </div>
       </div>

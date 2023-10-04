@@ -79,10 +79,11 @@ export const createProduct = (payload) => async (dispatch, getState) => {
 };
 
 export const removeProduct = (productId) => async (dispatch) => {
-  dispatch(removeProductRequested());
+  dispatch(removeProductRequested(productId));
   try {
-    const { list } = await productService.removeProduct(productId);
-    if (list) {
+    const { content } = await productService.removeProduct(productId);
+
+    if (content === undefined) {
       dispatch(productRemoved(productId));
     }
   } catch (error) {
@@ -94,6 +95,7 @@ export const updateProduct = (payload) => async (dispatch) => {
   dispatch(productUpdateRequested());
   try {
     const { content } = await productService.update(payload);
+    console.log(content);
     dispatch(productUpdateSuccessed(content));
   } catch (error) {
     dispatch(productUpdateRequested(error.message));

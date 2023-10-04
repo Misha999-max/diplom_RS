@@ -50,13 +50,13 @@ function ChangedProductPage() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ ...data });
     dispatch(updateProduct({ id, ...data }));
+    histore.push("/");
   };
   return (
     <div className="change__form">
       <div className="container">
-        <h1 className="repair__zone-title">ChangeProductPage</h1>
+        <h1 className="repair__zone-title">Настройка товаров</h1>
         <button className="back__batton" onClick={handelBack}>
           <svg
             height="16"
