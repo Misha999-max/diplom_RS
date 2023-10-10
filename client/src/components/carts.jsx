@@ -24,7 +24,7 @@ const Card = () => {
     dispatch(loadProductsList());
   }, []);
   const { itemId } = useParams();
-  const product = products && products.filter((prod) => prod._id === itemId);
+  const product = products && products.filter((prod) => prod?._id === itemId);
 
   const handleBack = () => {
     history.push("/");
@@ -32,7 +32,9 @@ const Card = () => {
 
   const category =
     categoryes &&
-    categoryes.filter((categ) => categ.category_id === product[0].category_id);
+    categoryes.filter(
+      (categ) => categ?.category_id === product[0]?.category_id
+    );
 
   function changeBackGround(cat) {
     if (cat === "телефон") {
@@ -57,7 +59,7 @@ const Card = () => {
       className="carts__container"
       style={{
         backgroundImage: `url(${
-          category && changeBackGround(category[0].name)
+          category && changeBackGround(category[0]?.name)
         })`,
         backgroundPosition: "center",
         backgroundSize: "cover",
@@ -81,10 +83,10 @@ const Card = () => {
       </button>
       {category && product ? (
         <div className="carts__item">
-          <h1>{`${category[0].name} ${product[0].title}`}</h1>
-          <img src={product[0].image} />
-          <span> цена: {product[0].price} </span>
-          <p>{product[0].description}</p>
+          <h1>{`${category[0]?.name} ${product[0]?.title}`}</h1>
+          <img src={product[0]?.image} />
+          <span> цена: {product[0]?.price} </span>
+          <p>{product[0]?.description}</p>
         </div>
       ) : (
         "Loading...."

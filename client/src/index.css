@@ -9,6 +9,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.loader__app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b1abab;
+  padding-bottom: 200px;
+}
 img {
   display: block;
   width: 150px;
@@ -26,16 +33,17 @@ img {
 .header__banner-img {
   margin-left: -560px;
   background-color: transparent;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  /* transform: scale(0.7); */
 }
 .header__banner-text {
   margin-left: 560px;
   opacity: 0;
-  margin-bottom: 30px;
 }
 .header__banner img {
   display: block;
-  width: 70%;
+  width: 50%;
+  display: block;
   height: auto;
 }
 .header__banner h1 {
@@ -62,6 +70,7 @@ img {
 .d-inline-block {
   max-width: 100px;
   height: auto;
+  margin-right: 20px;
 }
 .main__container {
   height: 100wh;
@@ -119,8 +128,8 @@ img {
 }
 .carts__item-add {
   display: block;
-  margin: 0 auto;
-  padding: 5px 10px;
+  /* margin: 0 auto; */
+  padding: 0px 10px;
   color: chartreuse;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -246,6 +255,12 @@ img {
   color: #ed7373;
   margin-bottom: 20px;
 }
+.adress__group {
+  background-color: #c5c1c1;
+  margin-top: -50px;
+  padding-top: 50px;
+  color: blue;
+}
 
 .repaer__zone {
   display: flex;
@@ -254,7 +269,7 @@ img {
 .repair__zone-title {
   display: flex;
   justify-content: center;
-  color: #f7f2d2;
+  color: #591bea;
   margin-top: 50px;
   margin-bottom: 30px;
 }
@@ -266,6 +281,7 @@ img {
   padding-bottom: 100px;
   padding-top: 20px;
   margin-top: -50px;
+  background-color: #a09a9a;
 }
 .form__group {
   border: 2px solid black;
@@ -280,7 +296,7 @@ img {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  border: 2px solid rgb(104, 238, 38);
+  border: 2px solid rgb(38, 138, 238);
   border-radius: 13px;
   padding: 10px 5px;
   transition: all 0.3s ease;
@@ -634,6 +650,9 @@ button.btn__back-cards {
 
 .glitch {
   position: relative;
+  margin-top: 200px;
+  bottom: 50%;
+  left: 50%;
   font-size: 25px;
   font-weight: 700;
   line-height: 1.2;
@@ -799,6 +818,8 @@ button.btn__back-cards {
   border-radius: 0.3em;
   font-size: 16px;
   font-weight: bold;
+  margin: 40px auto;
+  display: block;
 }
 
 .add__basket::after {

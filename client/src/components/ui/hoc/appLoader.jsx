@@ -12,9 +12,16 @@ const AppLoader = ({ children }) => {
   useEffect(() => {
     dispatch(loadProductsList());
     dispatch(loadCategoryList());
-  }, []);
+  }, [productsLoading]);
 
-  if (productsLoading && categoryLoading) return "loading";
+  if (productsLoading && categoryLoading)
+    return (
+      <div className="loader">
+        <div data-glitch="Loading..." className="glitch">
+          Loading...
+        </div>
+      </div>
+    );
   return children;
 };
 

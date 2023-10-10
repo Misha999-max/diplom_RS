@@ -8,7 +8,6 @@ const productService = {
   },
   createProduct: async (payload) => {
     const { content } = await httpService.post(productParamEndpoint, payload);
-    console.log(content);
     return content;
   },
   removeProduct: async (productId) => {
@@ -22,6 +21,7 @@ const productService = {
       productParamEndpoint + payload.id,
       payload
     );
+    console.log(content);
     return content;
   },
 };

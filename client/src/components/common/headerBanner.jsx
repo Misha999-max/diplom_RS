@@ -14,7 +14,7 @@ const HeaderBanner = () => {
     });
     gsap.to(logoItemText, 4.3, {
       opacity: 1,
-      x: -260,
+      x: -300,
       scale: 1.7,
       color: "red",
       ease: Power3.easeInOut,

@@ -18,10 +18,10 @@ const HeaderComponent = ({ url }) => {
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
-              src="https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png"
+              src="https://www.pngall.com/wp-content/uploads/5/NASA-Logo-PNG-Free-Download.png"
               width="30px"
               height="10px"
               className="d-inline-block"

@@ -70,8 +70,8 @@ export const loadProductsList = () => async (dispatch, getState) => {
 export const createProduct = (payload) => async (dispatch, getState) => {
   dispatch(addProductRequested());
   try {
-    const { list } = await productService.createProduct(payload);
-    dispatch(productCreated(list));
+    const content = await productService.createProduct(payload);
+    dispatch(productCreated(content));
     history.push("/");
   } catch (error) {
     dispatch(productsRequestFild(error.message));
@@ -81,11 +81,9 @@ export const createProduct = (payload) => async (dispatch, getState) => {
 export const removeProduct = (productId) => async (dispatch) => {
   dispatch(removeProductRequested(productId));
   try {
-    const { content } = await productService.removeProduct(productId);
-
-    if (content === undefined) {
-      dispatch(productRemoved(productId));
-    }
+    const content = await productService.removeProduct(productId);
+    console.log(content);
+    dispatch(productRemoved(productId));
   } catch (error) {
     dispatch(productsRequestFild(error.message));
   }
@@ -94,7 +92,7 @@ export const removeProduct = (productId) => async (dispatch) => {
 export const updateProduct = (payload) => async (dispatch) => {
   dispatch(productUpdateRequested());
   try {
-    const { content } = await productService.update(payload);
+    const content = await productService.update(payload);
     console.log(content);
     dispatch(productUpdateSuccessed(content));
   } catch (error) {

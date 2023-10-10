@@ -47,7 +47,7 @@ const AddressPage = () => {
     history.push("/");
   };
   return (
-    <>
+    <div className="adress__group">
       <h1 className="repair__zone-title">Admin Panel</h1>
       <div className="container repaer__zone">
         <form action="" onSubmit={handleSubmit}>
@@ -100,10 +100,10 @@ const AddressPage = () => {
           <ul className="leftRepairZone__list">
             {products ? (
               products.map((item) => (
-                <li key={item._id} className="leftRepairZone__list-item">
-                  <img src={item.image ? item.image : ""} />
+                <li key={item?._id} className="leftRepairZone__list-item">
+                  <img src={item?.image} />
                   <span className="leftRepairZone__list-title">
-                    {item.title ? item.title : ""}
+                    {item?.title}
                   </span>
                   <span
                     className="changedspan"
@@ -129,7 +129,7 @@ const AddressPage = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

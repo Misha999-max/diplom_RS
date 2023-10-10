@@ -41,7 +41,7 @@ const MainPage = () => {
   const handleSortCategory = (id) => {
     const productArr = [];
     products.forEach((item) => {
-      if (item.category_id === id) {
+      if (item?.category_id === id) {
         productArr.push(item);
       }
     });
@@ -84,19 +84,19 @@ const MainPage = () => {
 
             {!isLoading ? (
               productCrop.map((item) => (
-                <div className="product__card" item key={item._id}>
+                <div className="product__card" item key={item?._id}>
                   <CartItem
-                    title={item.title}
-                    price={item.price}
-                    img={item.image}
-                    id={item._id}
+                    title={item?.title}
+                    price={item?.price}
+                    img={item?.image}
+                    id={item?._id}
                     handleClick={handleClick}
-                    handleAdd={() => handleAdd(item._id)}
+                    handleAdd={() => handleAdd(item?._id)}
                   />
                 </div>
               ))
             ) : (
-              <div className="loader">
+              <div className="loader loader__app">
                 <div data-glitch="Loading..." className="glitch">
                   Loading...
                 </div>
